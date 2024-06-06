@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+;l﻿// See https://aka.ms/new-console-template for more information
 using System.Numerics;
 
 //Sample execution
@@ -593,4 +593,43 @@ public static class LeetcodeSolution
         }
     }
     #endregion
+
+        #region #15 3 sum
+//    Given an integer array nums, return all the triplets[nums[i], nums[j], nums[k]]
+//    such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+//Notice that the solution set must not contain duplicate triplets.
+public static IList<IList<int>> ThreeSum(int[] nums)
+{
+    #region solution region
+    IList<IList<int>> output = new List<IList<int>>();
+    nums = nums.OrderBy(x => x).ToArray();
+    for (int i = 0; i < nums.Length; i++)
+    {
+        if (i != 0 && nums[i] == nums[i - 1]) continue;
+        //a + b + c = 0
+        int sum = 0 - nums[i];
+        int x = i + 1;
+        int y = nums.Length - 1;
+        while (x < y)
+        {
+            if (nums[x] + nums[y] == sum)
+            {
+                output.Add(new List<int>(new int[] {
+ nums[i], nums[x], nums[y]
+}));
+                x++;
+                y--;
+                while (x < nums.Length && nums[x] == nums[x - 1]) x++;
+                while (y >= 0 && nums[y] == nums[y + 1]) y--;
+            }
+            else if (nums[x] + nums[y] > sum)
+                y--;
+            else
+                x++;
+        }
+    }
+    return output;
+    #endregion
+}
+#endregion
 }
