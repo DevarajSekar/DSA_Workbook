@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DSA_Workbook
 {
     public static class GeekForGeek
@@ -45,7 +39,7 @@ namespace DSA_Workbook
         //Input: arr[] = { 2, 3, 1, 2, 3 }, n = 5
         //Output: 2 3
         //Explanation: 2 and 3 occur more than once in the given array.
-        public static List<int> duplicates(long[] arr, int n)
+        public static List<int> ArrayDuplicates(long[] arr, int n)
         {
             Array.Sort(arr);
             HashSet<int> distinct = new HashSet<int>();
@@ -98,6 +92,32 @@ namespace DSA_Workbook
                     result.Add(arr[i]);
             }
             return result;
+        }
+        #endregion
+
+        #region Second Largest item in an array
+        //Given an array Arr of size N, print the second largest distinct element from an array.If the second largest element doesn't exist then return -1.
+        //Example 1:
+        //Input: 
+        //N = 6
+        //Arr[] = {12, 35, 1, 10, 34, 1}
+        //Output: 34
+        //Explanation: The largest element of the
+        //array is 35 and the second largest element is 34.
+        //var x = print2largest(new int[] { 12, 35, 35, 35, 1, 10, 34, 1 }, 6);
+
+        static int print2largest(int[] arr, int n)
+        {
+            Array.Sort(arr);
+            Array.Reverse(arr);
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                if (arr[i] != arr[i + 1])
+                {
+                    return arr[i + 1];
+                }
+            }
+            return -1;
         }
         #endregion
     }
